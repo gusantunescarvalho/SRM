@@ -1,0 +1,24 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Limite de Crédito</th>
+        <th scope="col">Risco</th>
+        <th scope="col">Taxa de Juros</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.creditLimit | mask: 'dot_separator.2' }}</td>
+        <td>{{ customer.risk }}</td>
+        <td>{{ customer.interest | mask: 'percent'}}%</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

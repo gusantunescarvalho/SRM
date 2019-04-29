@@ -1,0 +1,40 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" [(ngModel)]="customer.name"
+               class="form-control" id="name" name="name" placeholder="Digite o nome"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Nome obrigatório</div>
+
+      <div class="form-group">
+        <label for="creditLimit">Limite de Crédito</label>
+        <input type="text" [(ngModel)]="customer.creditLimit"
+               class="form-control" id="creditLimit" name="creditLimit" placeholder="Digite o limite de crédito"
+               required #creditLimit="ngModel" mask="dot_separator.2">
+      </div>
+      <div [hidden]="!creditLimit.pristine" class="alert alert-danger">Limite de crédito obrigatório</div>
+
+      <div class="form-group">
+        <label for="risk">Risco</label><br>
+        <select name="risk" id="risk" [(ngModel)]="customer.risk" #t (change)="onChangeRisk(t.value)">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="interest">Taxa de juros</label>
+        <input type="text" [(ngModel)]="customer.interest" [disabled]="!(t.value=='A')"
+               class="form-control" id="interest" name="interest"
+               required #interest="ngModel" mask="percent" sufix="%">
+      </div>
+
+      <button type="submit" [disabled]="!customerForm.form.valid" class="btn btn-info">Salvar</button>
+    </form>
+  </div>
+</div>
+
